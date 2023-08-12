@@ -1,0 +1,61 @@
+<!--Payment Method Selection Page-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Payment</title>
+        <style>
+            body {
+                background-color: #ffdf92;
+            }
+            
+            .logo {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 250px;
+            }
+
+            .centre {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1;
+                background-color: #AC9362;
+                width: 600px;
+                margin: auto;
+                padding: 10px;
+            }
+
+            #subtext {
+                text-align: center;
+            }
+
+            #headertext {
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="ESE_Website_logo.png" alt="logo" class="logo">
+        </header>
+        <div class="centre">
+            <form>
+                <p id="headertext"><u><b>Payment</b></u></p>
+                <p id="subtext">Choose mode of payment:</p>
+                <button onclick="bankAcc()">Bank Account</button>
+                <button onclick="paypalDirect()">Paypal / Credit Card</button>
+            </form>
+        </div>
+        <script>
+            function bankAcc() {
+                open("ESE_payment_page_5_bankAcc.html");
+            }
+
+            function paypalDirect() {
+                open("ESE_payment_page_5_paypal_card.html");
+            }
+        </script>
+    </body>
+</html>

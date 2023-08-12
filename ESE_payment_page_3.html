@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Payment Page</title>
+        <style>
+            body {
+                background-color: #ffdf92;
+            }
+
+            .box1 {
+                width: 250px;
+                height: 50px;
+            }
+
+            .logo {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 250px;
+            }
+
+            input {
+                width: 390px;
+                height: 40px;
+            }
+
+            .centre {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1;
+                background-color: #AC9362;
+                width: 600px;
+                margin: auto;
+                padding: 10px;
+            }
+
+            select {
+                width: 400px;
+                height: 50px;
+            }
+
+            
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="ESE_Website_logo.png" alt="logo" class="logo">
+        </header>
+        <div class="centre">
+            <form id="form3" onsubmit="return formValidation()">
+                <p><u><b>Employment Details</b></u></p>
+                <p>Account Details:</p>
+    
+                <!--Employment Status-->
+                <label>Employment Status</label>
+                <br>
+                <select class="employment-status">
+                    <option value="" disabled selected>Employment Status</option>
+                    <option value="employed">Employed</option>
+                    <option value="self-employed">Self Employed</option>
+                    <option value="Unemployed">Unemployed</option>
+                </select>
+                <br><br>
+    
+                <!--Occupation-->
+                <label>Occupation</label>
+                <br>
+                <select class="occupation">
+                    <option value="" disabled selected>Select Occupation</option>
+                    <option value="account">Accountant</option>
+                    <option value="bank">Bank officer</option>
+                    <option value="insurance">Insurance Agent</option>
+                    <option value="economist">Economist</option>
+                </select>
+                <br><br>
+    
+                <!--Employer's Name-->
+                <label>Employer's Name</label>
+                <br>
+                <input type="text" placeholder="Enter your Employer's Name">
+                <br><br>
+    
+                <!--Income per annum range-->
+                <label>Income per annum range</label>
+                <br>
+                <select class="income-range">
+                    <option value="" disabled selected>Select income per annum range</option>
+                    <option value="range1">Below $30,000 p.a.</option>
+                    <option value="range2">$30,000 to $60,000 p.a.</option>
+                    <option value="range3">$60,001 to $90,000 p.a.</option>
+                    <option value="range4">$90,001 to $120,000 p.a.</option>
+                    <option value="range5">Above $120,000 p.a.</option>
+                </select>
+                <br><br>
+    
+                <input type="submit" value="Continue" id="nextButton">
+            </form>
+        </div>
+        
+
+        <script src="database.js"></script>
+        <script>
+
+            function formValidation() {
+                var form = document.getElementById("form3");
+                var selectElements = form.getElementsByTagName("select");
+                var is_Valid = true;
+      
+                for (var i = 0; i < selectElements.length; i++) {
+                    var selectedOption = selectElements[i].value;
+                    if (selectedOption === "") {
+                        is_Valid = false;
+                        var questionNumber = i + 1;
+                        alert("Please select an option for Question " + questionNumber + ".");
+                        break;
+                    }
+                }
+      
+                if (!is_Valid) {
+                    return false; // Prevent form submission
+                }
+                else {
+                    window.location.href = "ESE_payment_page_4.html";
+                    return false;
+                }
+            }
+        </script>
+    </body>
+</html>

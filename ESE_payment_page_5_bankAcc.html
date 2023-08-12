@@ -1,0 +1,63 @@
+<!--Payment Method via Bank Account-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <link rel="stylesheet" href="body.css">
+    <style>
+        body {
+            background-color: #ffdf92;
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 250px;
+        }
+
+        .centre {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            background-color: #AC9362;
+            width: 600px;
+            margin: auto;
+            padding: 10px;
+        }
+
+        input {
+            width: 400px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="ESE_Website_logo.png" alt="logo" class="logo">
+    </header>
+    <div class="centre">
+        <form>
+            <p><u><b>Payment</b></u></p>
+            <p>Select Bank Account for payment:</p>
+            <!--Selecting Bank Account-->
+            <br>
+            <label>Please Select Account below:</label>
+            <br>
+            <select class="bank-acc" required>
+                <option value="" disabled selected>Select income per annum range</option>
+                <option value="acc1">123-45678-90</option>
+            </select>
+            <br><br>
+            <button onclick="reDirect()">Next</button>
+        </form>
+    </div>
+    <script>
+        function reDirect() {
+            open(URL="ESE_payment_complete_page.html");
+        }
+    </script>
+</body>
+</html>

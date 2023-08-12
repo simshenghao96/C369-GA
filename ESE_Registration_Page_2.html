@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration</title>
+        <style>
+            body {
+                background-color: #ffdf92;
+
+            }
+
+            header {
+                align-items: center;
+                padding: 10px;
+            }
+
+            .logo {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 250px;
+            }
+
+            .container {
+                display: flex;
+            }
+
+            select {
+                margin-right: 10px;
+            }
+
+            .centre {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1;
+                background-color: #AC9362;
+                width: 600px;
+                margin: auto;
+                padding: 10px;
+            }
+
+            h1 {
+                text-align: center;
+                background-color: #AC9362;
+                width: 500px;
+                margin: auto;
+            }
+
+            h6 {
+                text-align:  center;
+                background-color: #AC9362;
+                width: 500px;
+                margin: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            input {
+                width: 400px;
+                height: 50px;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="ESE_Website_logo.png" alt="logo" class="logo">
+        </header>
+
+        <div class="centre">
+            <form id="regForm2" onsubmit="return formValidation()">
+                <h1>Register an account</h1>
+                <label><u>Step 2 (Personal Particulars)</u></label>
+                <br><br>
+                <input type="text" id="bankID" placeholder="Create Banking ID" required>
+                <br><br>
+                <input type="password" id="password1" placeholder="Create Password" required>
+                <br><br>
+                <input type="password" id="password2" placeholder="Re-Enter Password" required>
+                <br><br>
+                <input type="submit" value="Continue" id="nextButton" disabled> 
+            </form>
+        </div>
+
+        <script>
+            function formValidation() {
+              var form = document.getElementById("regForm2");
+              var inputs = form.getElementsByTagName("input");
+              var is_Valid = true;
+            
+              for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type === "text" && inputs[i].hasAttribute("required")) {
+                  if (inputs[i].value.trim() === "") {
+                    is_Valid = false;
+                    break;
+                  }
+                }
+              }
+
+              if (!is_Valid) {
+                alert("Please fill in all the required fields.");
+                return false;
+              }
+
+              else {
+                window.location.href = "ESE_home_page_logged_in.html";
+                return false;
+              }
+            }
+
+            document.addEventListener("input", function() {
+                var form = document.getElementById("regForm2");
+                var inputs = form.getElementsByTagName("input");
+                var nextButton = document.getElementById("nextButton");
+                var is_Filled = true; 
+
+                for (var i = 0; i < inputs.length; i++) {
+                    if (inputs[i].type === "text" && inputs[i].hasAttribute("required")) {
+                        if (inputs[i].value.trim() === "") {
+                            is_Filled = false;
+                            break;
+                        }
+                    }
+                }
+
+                nextButton.disabled = !is_Filled;
+            });
+        </script>
+    </body>
+</html>

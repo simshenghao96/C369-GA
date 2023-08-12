@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Payment Page</title>
+        <style>
+            body {
+                background-color: #ffdf92;
+            }
+
+            .box1 {
+                width: 250px;
+                height: 50px;
+            }
+
+            .logo {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 250px;
+            }
+
+            input {
+                width: 400px;
+                height: 50px;
+            }
+
+            .centre {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1;
+                background-color: #AC9362;
+                width: 600px;
+                margin: auto;
+                padding: 10px;
+            }
+
+            .container {
+                display: flex;
+            }
+
+            input[type="radio"] {
+                transform: scale(0.5);
+                margin-right: 10px;
+                vertical-align: left;
+            }
+
+            
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="ESE_Website_logo.png" alt="logo" class="logo">
+        </header>
+        <div class="centre">
+            <form id="form2" onsubmit=" return formValidation()">
+                <p><u><b>Currency Details</b></u></p>
+                <p>Account Details:</p>
+    
+                <!--Source of Fund-->
+                <label>Source of Funds</label>
+                <br>
+                <select id="source-fund" required>
+                    <option value="" disabled selected>Select Source of Funds</option>
+                    <option value="business-income">Business Income</option>
+                    <option value="income">Income/Salary</option>
+                    <option value="Inheritance">Inheritance</option>
+                    <option value="rentals">Rental Proceeds</option>
+                    <option value="savings">Savings</option>
+                </select>
+                <br><br>
+    
+                <!--Purpose to open account-->
+                <label>Purpose of Account Opening</label>
+                <br>
+                <select id="account-purpose" required>
+                    <option value="" disabled selected>Select Purpose of Account</option>
+                    <option value="investment">Investment</option>
+                    <option value="salary-credit">Salary Crediting</option>
+                    <option value="transactional">Transactional</option>
+                    <option value="savings">Savings</option>
+                    <option value="others">Others</option>
+                </select>
+                <br><br>
+    
+                <!--Selecting Bank Account-->
+                <label for="">Please Select Account</label>
+                <div class="container">
+                    <br>
+                    <input type="radio" id="bank-account" name="option"><div id="account-num"></div><br>
+                </div>
+                
+    
+                <input type="submit" value="Continue" id="nextButton">
+            </form>
+        </div>
+
+        <script src="database.js"></script>
+        <script>
+//            document.getElementById("account-num").innerHTML = 
+            function formValidation() {
+              var form = document.getElementById("form2");
+              var inputs = form.getElementsByTagName("input");
+              var select1 = document.getElementById("source-fund");
+              var select2 = document.getElementById("account-purpose");
+              var radio_buttons = document.getElementsByName("option");
+              var is_Valid = true; // For 
+              var is_Selected = false; // For Radio Buttons Boolean validation
+            
+              for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type === "text" && inputs[i].hasAttribute("required")) {
+                  if (inputs[i].value.trim() === "") {
+                    is_Valid = false;
+                    break;
+                  }
+                }
+              }
+
+              if(select1.value === "" && select2.value === "") {
+                alert("Please Select an option");
+                is_Valid = false;
+              }
+
+              // For Checking through the radio button options
+              for (var i = 0; i < radio_buttons.length; i++) {
+                if (radio_buttons[i].checked) {
+                    is_Selected = true;
+                    break;
+                }
+              }
+
+              if(!is_Selected) {
+                is_Valid = false;
+                alert("Please select an option");
+              }
+
+              // For checking if the form fields are all being field before activating the continue button
+              if (!is_Valid) {
+                alert("Please fill in all the required fields.");
+                return false;
+              }
+              else {
+                window.location.href = "ESE_payment_page_3.html";
+                return false;
+              }
+            }
+
+            document.addEventListener("input", function() {
+                var form = document.getElementById("form2");
+                var inputs = form.getElementsByTagName("input");
+                var select1 = document.getElementById("source-fund");
+                var select2 = document.getElementById("account-purpose");
+                var nextButton = document.getElementById("nextButton");
+                var is_Filled = true; // Boolean check for whether if the forms are being filled for the required fills
+                var is_Selected = false; // Boolean check for the options for radio buttons
+
+                for (var i = 0; i < inputs.length; i++) {
+                    if (inputs[i].type === "text" && inputs[i].hasAttribute("required")) {
+                        if (inputs[i].value.trim() === "") {
+                            is_Filled = false;
+                            break;
+                        }
+                    }
+                }
+
+                // Check if the gender select has a valid value selected
+                if (select1.value === "" && select2.value === "") {
+                    is_Filled = false;
+                }
+
+                for(var i = 0; i < radio_buttons.length; i++) {
+                    if(radio_buttons[i].checked) {
+                        is_Selected = true;
+                        break;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

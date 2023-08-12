@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration</title>
+        <style>
+            body {
+                background-color: #ffdf92;
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+
+            }
+
+            header {
+                align-items: center;
+                padding: 10px;
+            }
+
+            .logo {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 250px;
+            }
+
+            .container {
+                display: flex;
+            }
+
+            select {
+                margin-right: 5px;
+            }
+
+            .centre {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1;
+                background-color: #AC9362;
+                width: 600px;
+                margin: auto;
+                padding-bottom: 20px;
+            }
+
+            h1 {
+                text-align: center;
+                background-color: #AC9362;
+                width: 500px;
+                margin: auto;
+            }
+
+            h6 {
+                text-align:  center;
+                background-color: #AC9362;
+                width: 500px;
+                margin: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .singpass {
+                width: 325px;
+                height: 50px;
+            }
+
+            input {
+                width: 400px;
+                height: 50px;
+            }
+            
+
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <img src="ESE_Website_logo.png" alt="logo" class="logo">
+        </header>
+
+        <div class="centre">
+            <form id="regForm1" onsubmit="return formValidation()">
+                <h1>Register an account</h1>
+                <label><u>Step 1 (Personal Particulars):</u></h6>
+
+                <br><br>
+                <input type="text" placeholder="Full name (As stated on NRIC/Passport)" required>
+                <br><br>
+    
+                <!--Phone Credentials-->
+                <div class="container">
+                    <!--Selection of Country Code Number-->
+                    <select id="country-code">
+                        <option value="#" disabled selected>Select Country Code</option>
+                        <option value="SG">+65</option>
+                        <option value="MY">+60</option>
+                        <option value="IDNS">+62</option>
+                        <option value="China">+86</option>
+                    </select>
+                    <!--Input of phone number-->
+                    <input type="tel" placeholder="Enter Mobile Number" required>
+                </div>
+                <br><br>
+    
+                <!--DOB (Date Of Birth)-->
+                <input type="date" placeholder="Date of Birth" required>
+                <br><br>
+    
+                <!--NRIC/Passport Number-->
+                <input type="text" placeholder="Enter NRIC/Passport Number" required>
+                <br><br>
+    
+                <a href="https://www.singpass.gov.sg/home/ui/login"><img src="ESE_singpass.png" alt="singpass" class="singpass"></a>
+                <br><br>
+                <input type="submit" value="Continue" id="nextButton" disabled>
+            </form>
+        </div>
+
+        <script>
+            function formValidation() {
+              var form = document.getElementById("regForm1");
+              var inputs = form.getElementsByTagName("input");
+              var select = document.getElementById("country-code");
+              var is_Valid = true;
+            
+              for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type === "text" && inputs[i].hasAttribute("required")) {
+                  if (inputs[i].value.trim() === "") {
+                    is_Valid = false;
+                    break;
+                  }
+                }
+              }
+
+              if(select.value === "") {
+                alert("Please Select");
+                is_Valid = false;
+              }
+
+              if (!is_Valid) {
+                alert("Please fill in all the required fields.");
+                return false;
+              }
+              else {
+                window.location.href = "ESE_Registration_Page_2.html";
+                return false;
+              }
+            }
+
+            document.addEventListener("input", function() {
+                var form = document.getElementById("regForm1");
+                var inputs = form.getElementsByTagName("input");
+                var select = document.getElementById("country-code");
+                var nextButton = document.getElementById("nextButton");
+                var is_Filled = true;
+
+                for (var i = 0; i < inputs.length; i++) {
+                    if (inputs[i].type === "text" && inputs[i].hasAttribute("required")) {
+                        if (inputs[i].value.trim() === "") {
+                            is_Filled = false;
+                            break;
+                        }
+                    }
+                }
+
+                // Check if the gender select has a valid value selected
+                if (select.value === "") {
+                    is_Filled = false;
+                }
+
+                nextButton.disabled = !is_Filled;
+            });
+        </script>
+    </body>
+</html>
